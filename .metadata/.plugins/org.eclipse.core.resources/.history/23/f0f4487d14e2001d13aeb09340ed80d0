@@ -1,0 +1,39 @@
+package PageTestes;
+
+import java.util.Properties;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import browsers.Navegadores;
+
+@RunWith(JUnit4.class)
+public class Testes {
+
+	private static Navegadores navegadores;
+	private static Properties propriedades;
+
+	@SuppressWarnings("static-access")
+	@BeforeClass
+	public static void setUp() {
+		navegadores = new Navegadores();
+		navegadores.configurarDriver();
+	}
+
+	@Test
+	public void teste1() {
+		// Código de teste para o método 1
+	}
+
+	@Test
+	public void teste2() {
+		// Código de teste para o método 2
+	}
+
+	@AfterClass
+	public static void tearDown() {
+		// Fechar o navegador e outros recursos aqui, se necessário
+	}
+}

@@ -1,0 +1,66 @@
+package browsers;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
+import confgurl.ConfigUrl;
+
+@RunWith(JUnit4.class)
+public class Navegadores {
+	
+	private static WebDriver driver;
+	private static String navegadorEscolhido;
+	
+	@BeforeClass
+	public static void configurarDriver() {
+		// Escolher o navegador
+		navegadorEscolhido = "edge"; // ou "firefox" ou "edge"
+	
+		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--remote-allow-origins=*");
+			driver = new ChromeDriver(chromeOptions);
+		}
+		else if (navegadorEscolhido.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			driver = new FirefoxDriver(firefoxOptions);
+		}
+		else if (navegadorEscolhido.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "./Driver/msedgedriver.exe");
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("--remote-allow-origins=*");
+			driver = new EdgeDriver(edgeOptions);
+		}
+		else {
+			throw new IllegalArgumentException("Navegador inválido: " + navegadorEscolhido);
+		}
+	}
+	
+	@Test
+	public void testarNavegador() {
+		// Navegar para a URL configurada
+		String url = ConfigUrl.getURL();
+		driver.get(url);
+		
+		// Realizar outras operações de teste no navegador escolhido
+		
+	}
+	
+	@AfterClass
+	public static void fecharDriver() {
+		
+		//driver.quit();
+	}
+}

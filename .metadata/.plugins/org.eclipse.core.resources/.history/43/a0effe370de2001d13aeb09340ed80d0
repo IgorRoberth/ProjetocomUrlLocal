@@ -1,0 +1,19 @@
+package PageTestes;
+
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import browsers.Navegadores;
+import confgurl.ConfigUrl;
+
+public class Testes extends Navegadores{
+
+	private static WebDriver driver;
+	
+	@Test
+	public void testarNavegador() {
+		
+		String url = ConfigUrl.getURL();
+		driver.get(url);
+				
+	}
+}

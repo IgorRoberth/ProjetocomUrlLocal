@@ -1,0 +1,45 @@
+package browsers;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import confgurl.ConfigUrl;
+
+@RunWith(JUnit4.class)
+public class Navegadores {
+
+	private static WebDriver driver;
+	
+	@BeforeClass
+	public static void configurarDriver() {
+		
+		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+		ChromeOptions option = new ChromeOptions();
+        option.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(option);
+
+		System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+		driver = new FirefoxDriver();
+
+		System.setProperty("webdriver.edge.driver", "./Driver/msedgedriver.exe");
+		driverEdge= new EdgeDriver();
+	}
+	@Test
+	public void testarNavegadores() {
+		// Navegar para a URL configurada
+		String url = ConfigUrl.getURL();
+		driverChrome.get(url);
+		driverFirefox.get(url);
+		driverEdge.get(url);
+
+		// Realizar outras operações de teste nos navegadores
+		
+	}
+}

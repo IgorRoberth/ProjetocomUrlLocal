@@ -1,0 +1,8 @@
+package PageTestes;
+
+import browsers.Navegadores;
+
+public class Testes extends Navegadores{
+
+	
+}

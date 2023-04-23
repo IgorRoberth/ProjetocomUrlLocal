@@ -1,0 +1,36 @@
+package PageTestes;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import browsers.Navegadores;
+import confgurl.ConfigUrl;
+
+public class Testes extends Navegadores{
+
+	private static WebDriver driver;
+	
+    @BeforeClass
+    public static void setUp() {
+    	
+    	driver = new EdgeDriver();
+    }
+	
+	@Test
+	public void testarNavegador() {
+		
+		String url = ConfigUrl.getURL();
+		driver.get(url);
+				
+	}
+	@AfterClass
+	public static void tearDown() {
+	  
+		driver.quit();
+		
+	}	
+}

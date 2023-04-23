@@ -1,0 +1,25 @@
+package confgurl;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+public class ConfigUrl {
+
+	private static Properties propriedades;
+
+	static {
+		propriedades = new Properties();
+		try {
+			InputStream entrada = new FileInputStream("");
+			propriedades.load(entrada);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String getURL() {
+		return propriedades.getProperty("url");
+	}
+}
