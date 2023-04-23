@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import browsers.Navegadores;
-import confgurl.ConfigUrl;
+import configurl.ConfigUrl;
 import driver.Driver;
 import elementos.Elementos;
 import elementos.Elementos.DadosPessoais;
