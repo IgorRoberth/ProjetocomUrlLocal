@@ -1,13 +1,11 @@
 package PageTestes;
 
 import java.io.IOException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
 import browsers.Navegadores;
 import configurl.ConfigUrl;
 import driver.Driver;
