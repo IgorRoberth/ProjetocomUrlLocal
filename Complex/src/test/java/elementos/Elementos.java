@@ -14,7 +14,7 @@ public class Elementos {
 		public static By Item = By.cssSelector("#item_4_title_link");
 		public static By adcCarrinho = By.cssSelector("#add-to-cart-sauce-labs-backpack");
 		public static By carrinho = By.cssSelector("#shopping_cart_container");
-		public static By validarItem = By.cssSelector("#item_4_title_link");
+		public static By validarItem = By.xpath("//*[text()='Sauce Labs Backpack']");
 		public static By check = By.cssSelector("#checkout");
 	}
 
