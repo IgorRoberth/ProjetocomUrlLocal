@@ -57,7 +57,6 @@ INDEX VERSION 1.131+C:\Users\igorr\AutomaticComplex\.metadata\.plugins\org.eclip
 4113232554.index
 1865797976.index
 3431976461.index
-3874401347.index
 4008563142.index
 412631347.index
 987574005.index
