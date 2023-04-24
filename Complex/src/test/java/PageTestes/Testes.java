@@ -36,16 +36,16 @@ public class Testes extends Driver{
 	@Test
 	public void RealizarCompraValidandoMsgFinal() throws IOException {
 		
-	    final String
+	      final String
 		login_user = "standard_user";
 		final String
 		senha_user = "secret_sauce";
 		final String
 		validar_produto = "Sauce Labs Backpack";
 		final String
-		nome_cliente = "Cl·udio Emanuel";
+		nome_cliente = "Cl√°udio Emanuel";
 		final String
-		sobrenome_cliente = "JosÈ da Rocha";
+		sobrenome_cliente = "Jos√© da Rocha";
 		final String
 		cep_cliente = "78559706";
 		final String
