@@ -1,4 +1,4 @@
-package PageTestes;
+package pagetestes;
 
 import java.io.IOException;
 import org.junit.After;

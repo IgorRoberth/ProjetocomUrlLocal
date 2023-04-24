@@ -7,16 +7,26 @@ import java.util.Properties;
 
 public class ConfigUrl {
 
-	private static Properties propriedades = new Properties();
+	private static Properties properties = new Properties();
+	private static final String CONFIG_FILE_PATH = System.getenv("CONFIG_FILE_PATH") != null ? System.getenv("CONFIG_FILE_PATH") : "C:\\Users\\igorr\\OneDrive\\Desktop\\config.properties";
+
 	static {
 		try {
-			InputStream entrada = new FileInputStream("C:\\Users\\igorr\\AutomaticComplex\\config.properties");
-			propriedades.load(entrada);
+			if (CONFIG_FILE_PATH == null) {
+				throw new IllegalArgumentException("Variável de ambiente CONFIG_FILE_PATH não definida");
+			}
+			InputStream input = new FileInputStream(CONFIG_FILE_PATH);
+			properties.load(input);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Erro ao carregar o arquivo de propriedades", e);
 		}
 	}
+
 	public static String getURL() {
-		return propriedades.getProperty("url");
+		String url = properties.getProperty("url");
+		if (url == null || url.isEmpty()) {
+			throw new RuntimeException("A propriedade 'url' não foi definida no arquivo de propriedades");
+		}
+		return url;
 	}
 }

@@ -18,6 +18,7 @@
     <fullyQualifiedTypeName name="browsers.Navegadores"/>
     <fullyQualifiedTypeName name="confgurl.ConfigUrl"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+    <fullyQualifiedTypeName name="elementos.Elementos.User_Bloq"/>
     <fullyQualifiedTypeName name="elementos.Elementos.selecionarItem"/>
     <fullyQualifiedTypeName name="elementos.Elementos.DadosPessoais"/>
 </qualifiedTypeNameHistroy>
