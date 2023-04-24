@@ -1,0 +1,38 @@
+package configurl;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.apache.commons.validator.routines.UrlValidator;
+
+public class ConfigUrl {
+
+	private static Properties properties = new Properties();
+	private static final String CONFIG_FILE_PATH = System.getenv("CONFIG_FILE_PATH") != null ? System.getenv("CONFIG_FILE_PATH") : "C:\\Users\\igorr\\OneDrive\\Desktop\\gl.properties";
+
+	static {
+		try {
+			if (CONFIG_FILE_PATH == null) {
+				throw new IllegalArgumentException("Variável de ambiente CONFIG_FILE_PATH não definida");
+			}
+			InputStream input = new FileInputStream(CONFIG_FILE_PATH);
+			properties.load(input);
+		} catch (IOException e) {
+			throw new RuntimeException("Erro ao carregar o arquivo de propriedades", e);
+		}
+	}
+
+	public static String getURL() {
+		String url = properties.getProperty("url");
+		if (url == null || url.isEmpty()) {
+			throw new RuntimeException("A propriedade 'url' não foi definida no arquivo de propriedades");
+		}
+		 UrlValidator urlValidator = new UrlValidator();
+	        if (!urlValidator.isValid(url)) {
+	            throw new RuntimeException("A URL definida no arquivo de propriedades não é válida");
+	        }	
+		return url;
+	}
+}

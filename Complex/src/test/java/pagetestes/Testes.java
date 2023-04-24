@@ -12,6 +12,7 @@ import configurl.ConfigUrl;
 import driver.Driver;
 import elementos.Elementos;
 import elementos.Elementos.DadosPessoais;
+import elementos.Elementos.UserProblem;
 import elementos.Elementos.User_Bloq;
 import elementos.Elementos.selecionarItem;
 import metodos.Metodos;
@@ -51,7 +52,8 @@ public class Testes extends Driver {
 		Metodos.clicar(driver, DadosPessoais.Continue);
 		Metodos.clicar(driver, DadosPessoais.finish);
 		Metodos.validarItem(driver, DadosPessoais.msgFinal, msg_final);
-		System.out.println("\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
+		System.out.println(
+				"\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
 
 	}
 
@@ -91,6 +93,31 @@ public class Testes extends Driver {
 		String msgErro = "Epic sadface: Sorry, this user has been locked out.";
 
 		TentarExecutarLoginComUsuarioBloqueado(User_Bloq, senha_Bloq, button, msgErro);
+	}
+
+	private void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(String login_Probl, String senha_Bloq,
+			String sauce_Labs, String prod_retornado, By button) throws IOException {
+
+		Metodos.escrever(driver, Elementos.Login.login, login_Probl);
+		Metodos.escrever(driver, Elementos.Login.senha, senha_Bloq);
+		Metodos.clicar(driver, Elementos.Login.button);
+		Metodos.clicar(driver, UserProblem.sauceLabs);
+		Metodos.validarItem(driver, UserProblem.produtoRetornado, prod_retornado);
+		System.out.println("\n====Erro, o produto selecionado era " + sauce_Labs + " e o retorno foi " + prod_retornado + "====");
+
+	}
+
+	@Test
+	public void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente() throws IOException {
+
+		String login_Probl = "problem_user";
+		String senha_Bloq = "secret_sauce";
+		By button = null;
+		String sauce_Labs = "Sauce Labs Onesie";
+		String prod_retornado = "Test.allTheThings() T-Shirt (Red)";
+
+		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Bloq, sauce_Labs, prod_retornado, button);
+
 	}
 
 	@After
