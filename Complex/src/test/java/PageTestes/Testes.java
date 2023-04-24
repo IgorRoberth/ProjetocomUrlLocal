@@ -51,8 +51,7 @@ public class Testes extends Driver {
 		Metodos.clicar(driver, DadosPessoais.Continue);
 		Metodos.clicar(driver, DadosPessoais.finish);
 		Metodos.validarItem(driver, DadosPessoais.msgFinal, msg_final);
-		System.out.println(
-				"\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
+		System.out.println("\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
 
 	}
 
