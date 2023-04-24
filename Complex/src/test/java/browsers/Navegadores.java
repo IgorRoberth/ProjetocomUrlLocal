@@ -33,7 +33,7 @@ public class Navegadores extends Driver {
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			driver = new EdgeDriver(edgeOptions);
 		} else {
-			throw new IllegalArgumentException("Navegador inv·lido: " + navegadorEscolhido);
+			throw new IllegalArgumentException("Navegador inv√°lido: " + navegadorEscolhido);
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
@@ -42,7 +42,7 @@ public class Navegadores extends Driver {
 	public static WebDriver getDriver() {
 		
 		if (driver == null) {
-			configurarDriver();
+		configurarDriver();
 		}
 		return driver;
 	}
