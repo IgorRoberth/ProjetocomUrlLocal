@@ -52,8 +52,7 @@ public class Testes extends Driver {
 		Metodos.clicar(driver, DadosPessoais.Continue);
 		Metodos.clicar(driver, DadosPessoais.finish);
 		Metodos.validarItem(driver, DadosPessoais.msgFinal, msg_final);
-		System.out.println(
-				"\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
+		System.out.println("\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
 
 	}
 
@@ -116,7 +115,8 @@ public class Testes extends Driver {
 		String sauce_Labs = "Sauce Labs Onesie";
 		String prod_retornado = "Test.allTheThings() T-Shirt (Red)";
 
-		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Bloq, sauce_Labs, prod_retornado, button);
+		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Bloq, sauce_Labs, prod_retornado,
+				button);
 
 	}
 
