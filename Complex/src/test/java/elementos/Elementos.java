@@ -24,10 +24,11 @@ public class Elementos {
 		public static By cep = By.cssSelector("#postal-code");
 		public static By Continue = By.cssSelector("#continue");
 		public static By finish = By.cssSelector("#finish");
-		public static By msgFinal = By.cssSelector("#checkout_complete_container > h2");
+		public static By msgFinal = By.xpath("//*[text()='Thank you for your order!']");
+
 	}
 
-	public static class UserBloq {
+	public static class User_Bloq {
 		public static By validarErro = By.xpath("//*[text()='Epic sadface: Sorry, this user has been locked out.']");
 
 	}

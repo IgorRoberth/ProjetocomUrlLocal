@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="Navegadores" project="Complex" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="browsers.Navegadores" time="2.692">
-    <testcase name="testarNavegadores" classname="browsers.Navegadores" time="2.692"/>
-  </testsuite>
-</testrun>

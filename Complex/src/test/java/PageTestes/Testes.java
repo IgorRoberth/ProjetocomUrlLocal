@@ -1,29 +1,29 @@
 package PageTestes;
 
 import java.io.IOException;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
+import org.openqa.selenium.By;
 import browsers.Navegadores;
 import configurl.ConfigUrl;
 import driver.Driver;
 import elementos.Elementos;
 import elementos.Elementos.DadosPessoais;
+import elementos.Elementos.User_Bloq;
 import elementos.Elementos.selecionarItem;
 import metodos.Metodos;
 
 @RunWith(JUnit4.class)
-public class Testes extends Driver{
+public class Testes extends Driver {
 
 	private static Navegadores navegadores;
 
 	@SuppressWarnings("static-access")
-	@BeforeClass
-	public static void setUp() {
+	@Before
+	public void InicioTeste() {
 
 		navegadores = new Navegadores();
 		navegadores.configurarDriver();
@@ -33,24 +33,10 @@ public class Testes extends Driver{
 
 	}
 
-	@Test
-	public void RealizarCompraValidandoMsgFinal() throws IOException {
-		
-	    final String
-		login_user = "standard_user";
-		final String
-		senha_user = "secret_sauce";
-		final String
-		validar_produto = "Sauce Labs Backpack";
-		final String
-		nome_cliente = "Cláudio Emanuel";
-		final String
-		sobrenome_cliente = "José da Rocha";
-		final String
-		cep_cliente = "78559706";
-		final String
-		msg_final = "Thank you for your order!";  
-		
+	private void ExecutarCompraEValidarProdutoEmsgFinal(String login_user, String senha_user, By button,
+			String validar_produto, String nome_cliente, String sobrenome_cliente, String cep_cliente, String msg_final)
+			throws IOException {
+
 		Metodos.escrever(driver, Elementos.Login.login, login_user);
 		Metodos.escrever(driver, Elementos.Login.senha, senha_user);
 		Metodos.clicar(driver, Elementos.Login.button);
@@ -65,21 +51,52 @@ public class Testes extends Driver{
 		Metodos.clicar(driver, DadosPessoais.Continue);
 		Metodos.clicar(driver, DadosPessoais.finish);
 		Metodos.validarItem(driver, DadosPessoais.msgFinal, msg_final);
-	//	Metodos.screenShot(driver, "Funcional");
-		System.out.println("\n=====Produto "+ validar_produto +" e mensagem " + msg_final + " validado com sucesso=====");
-	
+		// Metodos.screenShot(driver, "Funcional");
+		System.out.println("\n=====Produto " + validar_produto + " e mensagem " + msg_final + " validado com sucesso=====");
+
+	}
+
+	@Test
+	public void RealizarCompraValidandoMsgFinal() throws IOException {
+
+		String login_user = "standard_user";
+		String senha_user = "secret_sauce";
+		By button = null;
+		String validar_produto = "Sauce Labs Backpack";
+		String nome_cliente = "Cláudio Emanuel";
+		String sobrenome_cliente = "José da Rocha";
+		String cep_cliente = "78559706";
+		String msg_final = "Thank you for your order!";
+
+		ExecutarCompraEValidarProdutoEmsgFinal(login_user, senha_user, button, validar_produto, nome_cliente,
+				sobrenome_cliente, cep_cliente, msg_final);
+
+	}
+
+	private void TentarExecutarLoginComUsuarioBloqueado(String UserBloq, String senha_Bloq, By button, String msgErro) {
+
+		Metodos.escrever(driver, Elementos.Login.login, UserBloq);
+		Metodos.escrever(driver, Elementos.Login.senha, senha_Bloq);
+		Metodos.clicar(driver, Elementos.Login.button);
+		Metodos.validarItem(driver, User_Bloq.validarErro, msgErro);
+		System.out.println("\n======Mensagem de erro validado com sucesso "+ msgErro + "======");
+
 	}
 
 	@Test
 	public void ValidarTentativaDeLoginComUsuarioBloqueado() throws IOException {
 
-		
+		String User_Bloq = "locked_out_user";
+		String senha_Bloq = "secret_sauce";
+		By button = null;
+		String msgErro = "Epic sadface: Sorry, this user has been locked out.";
 
+		TentarExecutarLoginComUsuarioBloqueado(User_Bloq, senha_Bloq, button, msgErro);
 	}
 
-	@AfterClass
-	public static void tearDown() {
-		
-		 driver.quit();
+	@After
+	public void tearDown() {
+
+		driver.quit();
 	}
 }
