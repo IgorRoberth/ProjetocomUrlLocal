@@ -11,7 +11,9 @@ import browsers.Navegadores;
 import configurl.ConfigUrl;
 import driver.Driver;
 import elementos.Elementos;
+import elementos.Elementos.DadosPessoais;
 import elementos.Elementos.User_Bloq;
+import elementos.Elementos.selecionarItem;
 import metodos.Metodos;
 
 @RunWith(JUnit4.class)
@@ -35,7 +37,24 @@ public class Testes extends Driver {
 			String validar_produto, String nome_cliente, String sobrenome_cliente, String cep_cliente, String msg_final)
 			throws IOException {
 
+		Metodos.escrever(driver, Elementos.Login.login, login_user);
+		Metodos.escrever(driver, Elementos.Login.senha, senha_user);
+		Metodos.clicar(driver, Elementos.Login.button);
+		Metodos.clicar(driver, selecionarItem.validarItem);
+		Metodos.clicar(driver, selecionarItem.adcCarrinho);
+		Metodos.clicar(driver, selecionarItem.carrinho);
+		Metodos.validarItem(driver, selecionarItem.validarItem, validar_produto);
+		Metodos.clicar(driver, selecionarItem.check);
+		Metodos.escrever(driver, DadosPessoais.nome, nome_cliente);
+		Metodos.escrever(driver, DadosPessoais.sobrenome, sobrenome_cliente);
+		Metodos.escrever(driver, DadosPessoais.cep, cep_cliente);
+		Metodos.clicar(driver, DadosPessoais.Continue);
+		Metodos.clicar(driver, DadosPessoais.finish);
+		Metodos.validarItem(driver, DadosPessoais.msgFinal, msg_final);
+		System.out.println("\n======Mensagem de erro validado com sucesso " + msg_final + "======");
+
 	}
+
 	@Test
 	public void RealizarCompraValidandoMsgFinal() throws IOException {
 
@@ -59,7 +78,7 @@ public class Testes extends Driver {
 		Metodos.escrever(driver, Elementos.Login.senha, senha_Bloq);
 		Metodos.clicar(driver, Elementos.Login.button);
 		Metodos.validarItem(driver, User_Bloq.validarErro, msgErro);
-		System.out.println("\n======Mensagem de erro validado com sucesso "+ msgErro + "======");
+		System.out.println("\n======Mensagem de erro validado com sucesso " + msgErro + "======");
 
 	}
 
@@ -77,6 +96,6 @@ public class Testes extends Driver {
 	@After
 	public void tearDown() {
 
-		driver.quit();
+		 driver.quit();
 	}
 }
