@@ -36,7 +36,7 @@ public class Testes extends Driver{
 	@Test
 	public void RealizarCompraValidandoMsgFinal() throws IOException {
 		
-	      final String
+	        final String
 		login_user = "standard_user";
 		final String
 		senha_user = "secret_sauce";
