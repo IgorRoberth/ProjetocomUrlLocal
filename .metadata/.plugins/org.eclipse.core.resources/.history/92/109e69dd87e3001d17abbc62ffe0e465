@@ -24,7 +24,6 @@ public class Navegadores extends Driver {
 
 	public WebDriver configurarDriver() {
 		WebDriver driver;
-		
 		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
 			ChromeOptions chromeOptions = new ChromeOptions();
