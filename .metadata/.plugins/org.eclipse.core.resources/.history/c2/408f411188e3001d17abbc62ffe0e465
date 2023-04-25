@@ -19,12 +19,16 @@ public class Navegadores extends Driver {
 	}
 
 	private void setNavegadorEscolhido(String navegador) {
+<<<<<<< HEAD
 		this.navegadorEscolhido = navegador;
+=======
+                this.navegadorEscolhido = navegador;
+>>>>>>> 9a3a86645162147b641a7fedb7b9d871cbbfa175
 	}
 
 	public WebDriver configurarDriver() {
 		WebDriver driver;
-
+		
 		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
 			ChromeOptions chromeOptions = new ChromeOptions();
