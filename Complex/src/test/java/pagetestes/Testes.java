@@ -91,11 +91,11 @@ public class Testes extends Driver {
 		TentarExecutarLoginComUsuarioBloqueado(User_Bloq, senha_Bloq, button, msgErro);
 	}
 
-	private void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(String login_Probl, String senha_Bloq,
+	private void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(String login_Probl, String senha_Probl,
 			String sauce_Labs, String prod_retornado, By button) throws IOException {
 
 		Metodos.escrever(driver, Elementos.Login.login, login_Probl);
-		Metodos.escrever(driver, Elementos.Login.senha, senha_Bloq);
+		Metodos.escrever(driver, Elementos.Login.senha, senha_Probl);
 		Metodos.clicar(driver, Elementos.Login.button);
 		Metodos.clicar(driver, UserProblem.sauceLabs);
 		Metodos.validarItem(driver, UserProblem.produtoRetornado, prod_retornado);
@@ -107,12 +107,12 @@ public class Testes extends Driver {
 	public void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente() throws IOException {
 
 		String login_Probl = "problem_user";
-		String senha_Bloq = "secret_sauce";
+		String senha_Probl = "secret_sauce";
 		By button = null;
 		String sauce_Labs = "Sauce Labs Onesie";
 		String prod_retornado = "Test.allTheThings() T-Shirt (Red)";
 
-		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Bloq, sauce_Labs, prod_retornado,
+		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Probl, sauce_Labs, prod_retornado,
 				button);
 
 	}

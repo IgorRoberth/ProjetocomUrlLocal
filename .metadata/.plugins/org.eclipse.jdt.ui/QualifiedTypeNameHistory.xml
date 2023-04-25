@@ -24,4 +24,6 @@
     <fullyQualifiedTypeName name="org.apache.commons.validator.routines.UrlValidator"/>
     <fullyQualifiedTypeName name="elementos.Elementos.User_Bloq"/>
     <fullyQualifiedTypeName name="elementos.Elementos.UserProblem"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.remote.DesiredCapabilities"/>
 </qualifiedTypeNameHistroy>
