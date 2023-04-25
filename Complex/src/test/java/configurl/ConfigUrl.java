@@ -8,7 +8,8 @@ import java.util.Properties;
 public class ConfigUrl {
 
 	private static Properties properties = new Properties();
-	private static final String CONFIG_FILE_PATH = System.getenv("CONFIG_FILE_PATH") != null ? System.getenv("CONFIG_FILE_PATH"): "Caminho properties"; //Insira o caminho da URL no arquivo propertie
+	private static final String CONFIG_FILE_PATH = System.getenv("CONFIG_FILE_PATH") != null ? System.getenv("CONFIG_FILE_PATH"): "Caminho properties"; 
+//Insira o caminho da URL no arquivo propertie
 
 	static {
 		try {
