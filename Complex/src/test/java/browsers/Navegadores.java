@@ -19,8 +19,7 @@ public class Navegadores extends Driver {
 	}
 
 	private void setNavegadorEscolhido(String navegador) {
-
-		this.navegadorEscolhido = navegador;
+                this.navegadorEscolhido = navegador;
 	}
 
 	public WebDriver configurarDriver() {
@@ -40,7 +39,7 @@ public class Navegadores extends Driver {
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			driver = new EdgeDriver(edgeOptions);
 		} else {
-			throw new IllegalArgumentException("Navegador inv·lido: " + navegadorEscolhido);
+			throw new IllegalArgumentException("Navegador inv√°lido: " + navegadorEscolhido);
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
