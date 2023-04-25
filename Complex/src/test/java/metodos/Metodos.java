@@ -31,7 +31,7 @@ public class Metodos extends Driver{
 
 	public static void clicar(WebDriver drive, By elemento) {
 		try {
-		  driver.findElement(elemento).click();
+		    driver.findElement(elemento).click();
 		} catch (Exception e) {
 			System.err.println("-------erro ao clicar---------" + e.getMessage());
 			System.err.println("-------causa do erro---------" + e.getCause());

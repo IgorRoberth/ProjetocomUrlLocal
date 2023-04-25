@@ -20,19 +20,16 @@ import metodos.Metodos;
 @RunWith(JUnit4.class)
 public class Testes extends Driver {
 
-	private static Navegadores navegadores;
+    private Navegadores navegadores;
 
-	@SuppressWarnings("static-access")
-	@Before
-	public void InicioTeste() {
-
-		navegadores = new Navegadores();
-		navegadores.configurarDriver();
-		driver = Navegadores.getDriver();
-		String url = ConfigUrl.getURL();
-		driver.get(url);
-
-	}
+    @Before
+    public void InicioTeste() {
+    	
+        navegadores = new Navegadores("firefox"); //Informe o navegador desejado
+        driver = navegadores.configurarDriver();
+        String url = ConfigUrl.getURL();
+        driver.get(url);
+    }
 
 	private void ExecutarCompraEValidarProdutoEmsgFinal(String login_user, String senha_user, By button,
 			String validar_produto, String nome_cliente, String sobrenome_cliente, String cep_cliente, String msg_final)

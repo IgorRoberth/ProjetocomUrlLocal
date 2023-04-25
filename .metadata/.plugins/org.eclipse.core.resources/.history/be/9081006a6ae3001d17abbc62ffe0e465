@@ -1,0 +1,69 @@
+package browsers;
+
+import java.time.Duration;
+import java.util.Collections;
+
+import org.openqa.selenium.UnexpectedAlertBehaviour;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+
+import driver.Driver;
+
+public class Navegadores extends Driver { 
+	  
+    private static String navegadorEscolhido; 
+  
+    public static void configurarDriver() { 
+        navegadorEscolhido = "chrome"; 
+  
+        if (navegadorEscolhido.equalsIgnoreCase("chrome")) { 
+            System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe"); 
+            ChromeOptions chromeOptions = new ChromeOptions(); 
+            chromeOptions.addArguments("--disable-extensions"); 
+            chromeOptions.addArguments("--disable-plugins-discovery");
+            chromeOptions.addArguments("--disable-web-security");
+            chromeOptions.addArguments("--no-sandbox");
+            chromeOptions.addArguments("--disable-dev-shm-usage");
+            chromeOptions.addArguments("--disable-infobars");
+            chromeOptions.addArguments("--disable-notifications");
+            chromeOptions.addArguments("--disable-popup-blocking");
+            chromeOptions.addArguments("--disable-default-apps");
+            chromeOptions.addArguments("--disable-sync");
+            chromeOptions.addArguments("--disable-translate");
+            chromeOptions.addArguments("--disable-background-timer-throttling");
+            chromeOptions.addArguments("--disable-renderer-backgrounding");
+            chromeOptions.addArguments("--remote-debugging-port=0");
+            chromeOptions.setExperimentalOption("useAutomationExtension", false);
+            chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+            chromeOptions.setCapability("disable-popup-blocking", true);
+            chromeOptions.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+            chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+            driver = new ChromeDriver(chromeOptions); 
+        } else if (navegadorEscolhido.equalsIgnoreCase("firefox")) { 
+            System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe"); 
+            FirefoxOptions firefoxOptions = new FirefoxOptions(); 
+            driver = new FirefoxDriver(firefoxOptions); 
+        } else if (navegadorEscolhido.equalsIgnoreCase("edge")) { 
+            System.setProperty("webdriver.edge.driver", "./Driver/msedgedriver.exe"); 
+            EdgeOptions edgeOptions = new EdgeOptions(); 
+            driver = new EdgeDriver(edgeOptions); 
+        } else { 
+            throw new IllegalArgumentException("Navegador inválido: " + navegadorEscolhido); 
+        } 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); 
+        driver.manage().window().maximize(); 
+    } 
+  
+    public static WebDriver getDriver() { 
+        if (driver == null) { 
+            configurarDriver(); 
+        } 
+        return driver; 
+    } 
+}

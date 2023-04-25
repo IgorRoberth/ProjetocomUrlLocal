@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="Testes" project="Complex" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="pagetestes.Testes" time="61.673">
-    <testcase name="ValidarTentativaDeLoginComUsuarioBloqueado" classname="pagetestes.Testes" time="31.143"/>
-    <testcase name="RealizarCompraValidandoMsgFinal" classname="pagetestes.Testes" time="30.53"/>
-  </testsuite>
-</testrun>

@@ -1,0 +1,97 @@
+package browsers;
+
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.ChromePreferences;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.remote.CapabilityType;
+
+import driver.Driver;
+
+public class Navegadores extends Driver {
+
+	private static String navegadorEscolhido;
+
+	public static void configurarDriver() {
+		navegadorEscolhido = "chrome";
+
+		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.setExperimentalOption("prefs", getChromePreferences());
+			chromeOptions.addArguments("--proxy-server=proxy.example.com:8080");
+			chromeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			driver = new ChromeDriver(chromeOptions);
+		} else if (navegadorEscolhido.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.setProfile(getFirefoxProfile());
+			firefoxOptions.addPreference("network.proxy.type", 1);
+			firefoxOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			driver = new FirefoxDriver(firefoxOptions);
+		} else if (navegadorEscolhido.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "./Driver/msedgedriver.exe");
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("--proxy-server=proxy.example.com:8080");
+			edgeOptions.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			driver = new EdgeDriver(edgeOptions);
+		} else {
+			throw new IllegalArgumentException("Navegador inválido: " + navegadorEscolhido);
+		}
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+	}
+
+	public static WebDriver getDriver() {
+		if (driver == null) {
+			configurarDriver();
+		}
+		return driver;
+	}
+
+	public static class ChromePreferences {
+		private Map<String, Object> preferences;
+
+		public ChromePreferences() {
+			preferences = new HashMap<>();
+		}
+
+		public void put(String key, Object value) {
+			preferences.put(key, value);
+		}
+
+		public Map<String, Object> getPreferences() {
+			return preferences;
+		}
+
+		@SuppressWarnings("unused")
+		private static ChromePreferences getChromePreferences() {
+			ChromePreferences prefs = new ChromePreferences();
+			prefs.put("download.default_directory", "C:\\Downloads");
+			prefs.put("profile.default_content_setting_values.notifications", 2);
+			prefs.put("plugins.plugins_disabled", "Adobe Flash Player");
+			prefs.put("extensions.disabled", "Extension Name");
+			return prefs;
+		}
+
+		@SuppressWarnings("unused")
+		private static FirefoxProfile getFirefoxProfile() {
+			FirefoxProfile profile = new FirefoxProfile();
+			profile.setPreference("browser.download.folderList", 2);
+			profile.setPreference("browser.download.dir", "C:\\Downloads");
+			profile.setPreference("dom.webnotifications.enabled", false);
+			profile.setPreference("plugin.default.state", 0);
+			profile.setPreference("extensions.autoDisableScopes", 0);
+			return profile;
+		}
+	}
+}
