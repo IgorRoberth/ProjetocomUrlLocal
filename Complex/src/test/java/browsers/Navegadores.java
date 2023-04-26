@@ -23,7 +23,6 @@ public class Navegadores extends Driver {
 	}
 
 	public WebDriver configurarDriver() {
-		WebDriver driver;
 
 		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
@@ -40,7 +39,7 @@ public class Navegadores extends Driver {
 			edgeOptions.addArguments("--remote-allow-origins=*");
 			driver = new EdgeDriver(edgeOptions);
 		} else {
-			throw new IllegalArgumentException("Navegador inv√°lido: " + navegadorEscolhido);
+			throw new IllegalArgumentException("Navegador inv·lido: " + navegadorEscolhido);
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();

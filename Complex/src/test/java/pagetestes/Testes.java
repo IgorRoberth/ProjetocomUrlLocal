@@ -25,7 +25,7 @@ public class Testes extends Driver {
     @Before
     public void InicioTeste() {
     	
-        navegadores = new Navegadores("firefox"); //Informe o navegador desejado
+        navegadores = new Navegadores("chrome"); //Informe o navegador desejado
         driver = navegadores.configurarDriver();
         String url = ConfigUrl.getURL();
         driver.get(url);
