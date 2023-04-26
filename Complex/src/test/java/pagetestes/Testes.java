@@ -54,7 +54,7 @@ public class Testes extends Driver {
 	}
 
 	@Test
-	public void RealizarCompraValidandoMsgFinal() throws IOException {
+	public void ExecutarCompraEValidarProdutoEmsgFinal() throws IOException {
 
 		String login_user = "standard_user";
 		String senha_user = "secret_sauce";
@@ -70,7 +70,7 @@ public class Testes extends Driver {
 
 	}
 
-	private void TentarExecutarLoginComUsuarioBloqueado(String UserBloq, String senha_Bloq, By button, String msgErro) {
+	private void ValidarTentativaDeLoginComUsuarioBloqueado(String UserBloq, String senha_Bloq, By button, String msgErro) {
 
 		Metodos.escrever(driver, Elementos.Login.login, UserBloq);
 		Metodos.escrever(driver, Elementos.Login.senha, senha_Bloq);
@@ -88,10 +88,10 @@ public class Testes extends Driver {
 		By button = null;
 		String msgErro = "Epic sadface: Sorry, this user has been locked out.";
 
-		TentarExecutarLoginComUsuarioBloqueado(User_Bloq, senha_Bloq, button, msgErro);
+		ValidarTentativaDeLoginComUsuarioBloqueado(User_Bloq, senha_Bloq, button, msgErro);
 	}
 
-	private void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(String login_Probl, String senha_Probl,
+	private void ValidarCompraComVerificacaoDeProdutoEntregueIncorretamente(String login_Probl, String senha_Probl,
 			String sauce_Labs, String prod_retornado, By button) throws IOException {
 
 		Metodos.escrever(driver, Elementos.Login.login, login_Probl);
@@ -104,7 +104,7 @@ public class Testes extends Driver {
 	}
 
 	@Test
-	public void TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente() throws IOException {
+	public void ValidarCompraComVerificacaoDeProdutoEntregueIncorretamente() throws IOException {
 
 		String login_Probl = "problem_user";
 		String senha_Probl = "secret_sauce";
@@ -112,7 +112,7 @@ public class Testes extends Driver {
 		String sauce_Labs = "Sauce Labs Onesie";
 		String prod_retornado = "Test.allTheThings() T-Shirt (Red)";
 
-		TesteDeCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Probl, sauce_Labs, prod_retornado,
+		ValidarCompraComVerificacaoDeProdutoEntregueIncorretamente(login_Probl, senha_Probl, sauce_Labs, prod_retornado,
 				button);
 
 	}
