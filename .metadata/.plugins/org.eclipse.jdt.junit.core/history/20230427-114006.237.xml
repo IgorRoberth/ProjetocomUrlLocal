@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Testes" project="Complex" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="pagetestes.Testes" time="70.397">
+    <testcase name="ExecutarCompraEValidarProdutoEmsgFinal" classname="pagetestes.Testes" time="39.874"/>
+    <testcase name="ValidarTentativaDeLoginComUsuarioBloqueado" classname="pagetestes.Testes" time="13.727"/>
+    <testcase name="ValidarCompraComVerificacaoDeProdutoEntregueIncorretamente" classname="pagetestes.Testes" time="16.788"/>
+  </testsuite>
+</testrun>

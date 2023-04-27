@@ -9,6 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import driver.Driver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Navegadores extends Driver {
 
@@ -19,26 +20,48 @@ public class Navegadores extends Driver {
 	}
 
 	private void setNavegadorEscolhido(String navegador) {
+		if (!"chrome".equalsIgnoreCase(navegador) && !"firefox".equalsIgnoreCase(navegador)
+				&& !"edge".equalsIgnoreCase(navegador)) {
+			throw new IllegalArgumentException("Navegador inválido: " + navegador);
+		}
 		this.navegadorEscolhido = navegador;
 	}
 
 	public WebDriver configurarDriver() {
-
-		if (navegadorEscolhido.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+		switch (navegadorEscolhido.toLowerCase()) {
+		
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--remote-allow-origins=*");
+			chromeOptions.addArguments("--disable-extensions");
+			chromeOptions.addArguments("--disable-plugins-discovery");
+			chromeOptions.addArguments("--disable-popup-blocking");
+			chromeOptions.addArguments("--disable-infobars");
 			driver = new ChromeDriver(chromeOptions);
-		} else if (navegadorEscolhido.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+			break;
+
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--disable-extensions");
+			firefoxOptions.addArguments("--disable-plugins");
+			firefoxOptions.addArguments("--disable-popup-blocking");
+			firefoxOptions.addArguments("--no-sandbox");
 			driver = new FirefoxDriver(firefoxOptions);
-		} else if (navegadorEscolhido.equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", "./Driver/msedgedriver.exe");
+			break;
+
+		case "edge":
+			WebDriverManager.edgedriver().setup();
 			EdgeOptions edgeOptions = new EdgeOptions();
 			edgeOptions.addArguments("--remote-allow-origins=*");
+			edgeOptions.addArguments("--disable-extensions");
+			edgeOptions.addArguments("--disable-plugins-discovery");
+			edgeOptions.addArguments("--disable-popup-blocking");
+			edgeOptions.addArguments("--disable-features=RendererCodeIntegrity");
 			driver = new EdgeDriver(edgeOptions);
-		} else {
+			break;
+		default:
 			throw new IllegalArgumentException("Navegador inválido: " + navegadorEscolhido);
 		}
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
