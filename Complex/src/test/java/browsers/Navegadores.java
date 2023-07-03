@@ -17,6 +17,7 @@ public class Navegadores extends Driver {
 
 	public Navegadores(String navegador) {
 		setNavegadorEscolhido(navegador);
+		
 	}
 
 	private void setNavegadorEscolhido(String navegador) {
@@ -67,5 +68,6 @@ public class Navegadores extends Driver {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 		return driver;
+	
 	}
 }
